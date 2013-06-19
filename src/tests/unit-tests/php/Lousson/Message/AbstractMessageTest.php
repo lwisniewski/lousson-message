@@ -43,6 +43,7 @@
 namespace Lousson\Message;
 
 /** Dependencies: */
+use Lousson\URI\Generic\GenericURI;
 use PHPUnit_Framework_TestCase;
 
 /**
@@ -99,8 +100,8 @@ abstract class AbstractMessageTest extends PHPUnit_Framework_TestCase
      *  The provideMessageParameters() method returns an array of one
      *  or more items, each of whose is an array of either one or two:
      *
-     *- Message data, usually a byte sequence, for getMessage()
-     *- A media type string, for getMessage()
+     *- Message data, usually a byte sequence
+     *- A media type string
      *
      *  Authors of derived classes should reimplement this method if
      *  their test subject operates with a particular message dialect
@@ -121,6 +122,47 @@ abstract class AbstractMessageTest extends PHPUnit_Framework_TestCase
         $data[] = array(null, null);
 
         return $data;
+    }
+
+    /**
+     *  Provide valid URIs
+     *
+     *  The provideValidURIs() method returns an array of one or more
+     *  items, each of whose is an array with one item: Either a valid
+     *  URI string or an instance of the AnyURI interface.
+     *
+     *  Authors of derived classes should reimplement this method if
+     *  their test subject operates with a particular implementation
+     *  that supports e.g. specific schemes only.
+     *
+     *  @return array
+     *          A list of URI parameters is returned on success
+     */
+    public function provideValidURIs()
+    {
+        $uris[][] = "http://example.com/";
+        $uris[][] = "urn:lousson:test";
+        $uris[][] = GenericURI::create("urn:lousson:test");
+
+        return $uris;
+    }
+
+    /**
+     *  Provide invalid URIs
+     *
+     *  The provideValidURIs() method returns an array of one or more
+     *  items, each of whose is an array with one item: An invalid URI
+     *  string.
+     *
+     *  @return array
+     *          A list of invalid URI parameters is returned on success
+     */
+    public function provideInvalidURIs()
+    {
+        $uris[][] = ":alpha";
+        $uris[][] = "?key=value";
+
+        return $uris;
     }
 
     /**
