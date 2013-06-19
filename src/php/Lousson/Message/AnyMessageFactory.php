@@ -46,7 +46,8 @@ namespace Lousson\Message;
  *  An interface for message factories
  *
  *  The AnyMessageFactory interface declares the API to be provided by
- *  any message factory.
+ *  any message factory. They are used to convert raw message data into
+ *  instances of the AnyMessage interface.
  *
  *  @since      lousson/Lousson_Message-0.1.0
  *  @package    org.lousson.message
