@@ -70,6 +70,6 @@ interface AnyMessageFactory
      *  @throws \Lousson\Message\AnyMessageException
      *          Raised in case the message could not get created
      */
-    public function getMessage($data, $type = null);
+    public function getMessage($content, $type = null);
 }
 
