@@ -51,7 +51,6 @@ use Lousson\Message\AbstractMessageTest;
  *
  *  @since      lousson/Lousson_Message-0.1.0
  *  @package    org.lousson.record
- *  @link       http://www.phpunit.de/manual/current/en/
  */
 abstract class AbstractMessageResolverTest extends AbstractMessageTest
 {
@@ -67,20 +66,23 @@ abstract class AbstractMessageResolverTest extends AbstractMessageTest
     abstract public function getMessageResolver();
 
     /**
+     *  Test the resolveHandler() method
      *
-     */
-    public function provideArbitraryURIs()
-    {
-        $valid = $this->provideValidURIs();
-        $invalid = $this->provideInvalidURIs();
-        $uris = array_merge($valid, $invalid);
-        sort($uris);
-        return $uris;
-    }
-
-    /**
+     *  The testResolveValidHandlerURI() method is a test case for the
+     *  getMessageHandler() method in the AnyMessageResolver interface.
+     *  It verifies that the implementation returns an instance of the
+     *  AnyMessageHandler interface when invoked with a valid URI.
+     *
+     *  @param  string              $uri        The URI to resolve
+     *
      *  @dataProvider               provideValidURIs
      *  @test
+     *
+     *  @throws \PHPUnit_Framework_AssertionFailedError
+     *          Raised in case an assertion has failed
+     *
+     *  @throws \Exception
+     *          Raised in case of an internal error
      */
     public function testResolveValidHandlerURI($uri)
     {
@@ -98,9 +100,24 @@ abstract class AbstractMessageResolverTest extends AbstractMessageTest
     }
 
     /**
+     *  Test the resolveHandler() method
+     *
+     *  The testResolveInvalidHandlerURI() method is a test case for the
+     *  getMessageResolver() method in the AnyMessageResolver interface.
+     *  It verfies that the implementation raises an exception in case the
+     *  URI to resolve is invalid.
+     *
+     *  @param  string              $uri        The URI to resolve
+     *
      *  @dataProvider               provideInvalidURIs
      *  @expectedException          Lousson\Message\AnyMessageException
      *  @test
+     *
+     *  @throws \Lousson\Message\AnyMessageException
+     *          Raised in case the test is successful
+     *
+     *  @throws \Exception
+     *          Raised in case of any error
      */
     public function testResolveInvalidHandlerURI($uri)
     {
@@ -108,8 +125,23 @@ abstract class AbstractMessageResolverTest extends AbstractMessageTest
     }
 
     /**
+     *  Test the resolveProvider() method
+     *
+     *  The testResolveValidProviderURI() method is a test case for the
+     *  getMessageProvider() method in the AnyMessageResolver interface.
+     *  It verifies that the implementation returns an instance of the
+     *  AnyMessageProvider interface when invoked with a valid URI.
+     *
+     *  @param  string              $uri        The URI to resolve
+     *
      *  @dataProvider               provideValidURIs
      *  @test
+     *
+     *  @throws \PHPUnit_Framework_AssertionFailedError
+     *          Raised in case an assertion has failed
+     *
+     *  @throws \Exception
+     *          Raised in case of an internal error
      */
     public function testResolveValidProviderURI($uri)
     {
@@ -127,9 +159,24 @@ abstract class AbstractMessageResolverTest extends AbstractMessageTest
     }
 
     /**
+     *  Test the resolveProvider() method
+     *
+     *  The testResolveInvalidProviderURI() method is a test case for the
+     *  getMessageResolver() method in the AnyMessageResolver interface.
+     *  It verfies that the implementation raises an exception in case the
+     *  URI to resolve is invalid.
+     *
+     *  @param  string              $uri        The URI to resolve
+     *
      *  @dataProvider               provideInvalidURIs
      *  @expectedException          Lousson\Message\AnyMessageException
      *  @test
+     *
+     *  @throws \Lousson\Message\AnyMessageException
+     *          Raised in case the test is successful
+     *
+     *  @throws \Exception
+     *          Raised in case of any error
      */
     public function testResolveInvalidProviderURI($uri)
     {
